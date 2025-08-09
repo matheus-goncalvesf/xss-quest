@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLocation } from 'wouter';
 import { challenges, getChallengesByCategory } from '@/data/challenges';
 import { useProgress } from '@/hooks/useProgress';
@@ -12,6 +12,26 @@ const Dashboard = () => {
   const [location, setLocation] = useLocation();
   const { progress } = useProgress();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'basic' | 'intermediate' | 'advanced' | 'expert'>('all');
+  // Salvar posição do scroll quando navegar para um desafio
+  const saveScrollPosition = () => {
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    sessionStorage.setItem('dashboardScrollPosition', scrollTop.toString());
+  };
+
+  // Restaurar posição do scroll quando voltar ao dashboard
+  useEffect(() => {
+    const savedScrollPosition = sessionStorage.getItem('dashboardScrollPosition');
+    if (savedScrollPosition) {
+      const scrollTop = parseInt(savedScrollPosition, 10);
+      // Usar um pequeno delay para garantir que o DOM foi renderizado
+      setTimeout(() => {
+        window.scrollTo({
+          top: scrollTop,
+          behavior: 'auto'
+        });
+      }, 100);
+    }
+  }, []);
 
   const categoryIcons = {
     basic: Target,
@@ -110,7 +130,10 @@ const Dashboard = () => {
                     ? 'border-success/50 bg-success/5' 
                     : 'border-primary/20 hover:border-primary/40'
                 } ${isCompleted ? '' : 'vuln-indicator'}`}
-                onClick={() => setLocation(`/challenge/${challenge.id}`)}
+                onClick={() => {
+                  saveScrollPosition();
+                  setLocation(`/challenge/${challenge.id}`);
+                }}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">

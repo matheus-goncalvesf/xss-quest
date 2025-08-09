@@ -1,6 +1,6 @@
 import { Challenge } from '@/types/challenge';
 
-export const challenges: Challenge[] = [
+const allChallenges: Challenge[] = [
   // BÁSICO (1-15)
   {
     id: 1,
@@ -1129,6 +1129,9 @@ export const challenges: Challenge[] = [
     component: "Challenge50"
   }
 ];
+
+// Export apenas os 35 primeiros desafios que têm componentes implementados
+export const challenges: Challenge[] = allChallenges.filter(challenge => challenge.id <= 35);
 
 // Função para obter desafios por categoria
 export const getChallengesByCategory = (category: Challenge['category']) => {
