@@ -2,41 +2,57 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* XSS Training Lab Design System */
+
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Hacker/Terminal Theme */
+    --background: 180 2% 8%;
+    --foreground: 120 100% 85%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 180 3% 12%;
+    --card-foreground: 120 100% 85%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 180 3% 10%;
+    --popover-foreground: 120 100% 85%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Matrix Green Primary */
+    --primary: 120 100% 50%;
+    --primary-foreground: 180 2% 8%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Dark Secondary */
+    --secondary: 180 3% 20%;
+    --secondary-foreground: 120 80% 75%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 180 3% 15%;
+    --muted-foreground: 120 20% 60%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Danger Red Accent */
+    --accent: 0 100% 60%;
+    --accent-foreground: 180 2% 8%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 85% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 120 30% 25%;
+    --input: 180 3% 15%;
+    --ring: 120 100% 50%;
 
-    --radius: 0.5rem;
+    /* Success/Exploit Colors */
+    --success: 120 100% 50%;
+    --success-foreground: 180 2% 8%;
+    
+    /* Warning/Hint Colors */
+    --warning: 45 100% 60%;
+    --warning-foreground: 180 2% 8%;
+
+    /* Terminal Effects */
+    --terminal-glow: 120 100% 50%;
+    --exploit-flash: 0 100% 60%;
+
+    --radius: 0.3rem;
 
     --sidebar-background: 0 0% 98%;
 
@@ -100,6 +116,73 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-mono;
+    font-family: 'JetBrains Mono', monospace;
+  }
+
+  /* Terminal Effects */
+  .terminal-glow {
+    text-shadow: 0 0 10px hsl(var(--terminal-glow));
+  }
+
+  .exploit-flash {
+    animation: exploitFlash 0.5s ease-in-out;
+  }
+
+  .typing-effect {
+    animation: typing 2s steps(20, end);
+  }
+
+  @keyframes exploitFlash {
+    0%, 50%, 100% { 
+      background-color: hsl(var(--exploit-flash) / 0.1);
+      box-shadow: 0 0 20px hsl(var(--exploit-flash) / 0.5);
+    }
+    25%, 75% { 
+      background-color: hsl(var(--exploit-flash) / 0.3);
+      box-shadow: 0 0 30px hsl(var(--exploit-flash) / 0.8);
+    }
+  }
+
+  @keyframes typing {
+    from { width: 0; }
+    to { width: 100%; }
+  }
+
+  /* Matrix Rain Effect */
+  .matrix-bg {
+    background: linear-gradient(0deg, 
+      hsl(var(--background)) 0%, 
+      hsl(var(--background) / 0.8) 50%,
+      hsl(var(--background)) 100%
+    );
+  }
+
+  /* Vulnerability Indicators */
+  .vuln-indicator {
+    position: relative;
+  }
+  
+  .vuln-indicator::after {
+    content: '';
+    position: absolute;
+    top: -2px;
+    left: -2px;
+    right: -2px;
+    bottom: -2px;
+    border: 1px solid hsl(var(--accent) / 0.3);
+    border-radius: var(--radius);
+    animation: vulnerablePulse 2s infinite;
+  }
+
+  @keyframes vulnerablePulse {
+    0%, 100% { 
+      border-color: hsl(var(--accent) / 0.3);
+      box-shadow: 0 0 0 0 hsl(var(--accent) / 0.4);
+    }
+    50% { 
+      border-color: hsl(var(--accent) / 0.8);
+      box-shadow: 0 0 0 4px hsl(var(--accent) / 0);
+    }
   }
 }
