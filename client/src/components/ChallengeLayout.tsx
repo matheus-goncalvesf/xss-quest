@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { challenges, getChallengeById } from '@/data/challenges';
 import { useProgress } from '@/hooks/useProgress';
 import { Button } from '@/components/ui/button';
@@ -15,7 +15,7 @@ interface ChallengeLayoutProps {
 }
 
 export const ChallengeLayout = ({ children, challengeId }: ChallengeLayoutProps) => {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
   const { toast } = useToast();
   const { progress, useHint, viewSolution } = useProgress();
   const [currentHint, setCurrentHint] = useState(0);
@@ -69,7 +69,7 @@ export const ChallengeLayout = ({ children, challengeId }: ChallengeLayoutProps)
               <Button
                 variant="ghost"
                 size="sm"
-                onClick={() => navigate('/dashboard')}
+                onClick={() => setLocation('/dashboard')}
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -194,7 +194,7 @@ export const ChallengeLayout = ({ children, challengeId }: ChallengeLayoutProps)
             {prevChallenge && (
               <Button
                 variant="outline"
-                onClick={() => navigate(`/challenge/${prevChallenge.id}`)}
+                onClick={() => setLocation(`/challenge/${prevChallenge.id}`)}
                 className="flex items-center gap-2"
               >
                 <ArrowLeft className="h-4 w-4" />
@@ -207,7 +207,7 @@ export const ChallengeLayout = ({ children, challengeId }: ChallengeLayoutProps)
             {nextChallenge && (
               <Button
                 variant="terminal"
-                onClick={() => navigate(`/challenge/${nextChallenge.id}`)}
+                onClick={() => setLocation(`/challenge/${nextChallenge.id}`)}
                 className="flex items-center gap-2"
               >
                 #{nextChallenge.id}: {nextChallenge.title}

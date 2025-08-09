@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { challenges, getChallengesByCategory } from '@/data/challenges';
 import { useProgress } from '@/hooks/useProgress';
 import { Button } from '@/components/ui/button';
@@ -9,7 +9,7 @@ import { Progress } from '@/components/ui/progress';
 import { Shield, Target, Zap, Crown, Trophy, Lock, CheckCircle } from 'lucide-react';
 
 const Dashboard = () => {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
   const { progress } = useProgress();
   const [selectedCategory, setSelectedCategory] = useState<'all' | 'basic' | 'intermediate' | 'advanced' | 'expert'>('all');
 
@@ -110,7 +110,7 @@ const Dashboard = () => {
                     ? 'border-success/50 bg-success/5' 
                     : 'border-primary/20 hover:border-primary/40'
                 } ${isCompleted ? '' : 'vuln-indicator'}`}
-                onClick={() => navigate(`/challenge/${challenge.id}`)}
+                onClick={() => setLocation(`/challenge/${challenge.id}`)}
               >
                 <CardHeader className="pb-3">
                   <div className="flex items-start justify-between">

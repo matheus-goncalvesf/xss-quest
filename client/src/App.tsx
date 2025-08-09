@@ -2,7 +2,7 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Router, Route, Switch } from "wouter";
 import Index from "./pages/Index";
 import Dashboard from "./pages/Dashboard";
 import Challenge1 from "./components/challenges/Challenge1";
@@ -49,49 +49,49 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/dashboard" element={<Dashboard />} />
-          <Route path="/challenge/1" element={<Challenge1 />} />
-          <Route path="/challenge/2" element={<Challenge2 />} />
-          <Route path="/challenge/3" element={<Challenge3 />} />
-          <Route path="/challenge/4" element={<Challenge4 />} />
-          <Route path="/challenge/5" element={<Challenge5 />} />
-          <Route path="/challenge/6" element={<Challenge6 />} />
-          <Route path="/challenge/7" element={<Challenge7 />} />
-          <Route path="/challenge/8" element={<Challenge8 />} />
-          <Route path="/challenge/9" element={<Challenge9 />} />
-          <Route path="/challenge/10" element={<Challenge10 />} />
-          <Route path="/challenge/11" element={<Challenge11 />} />
-          <Route path="/challenge/12" element={<Challenge12 />} />
-          <Route path="/challenge/13" element={<Challenge13 />} />
-          <Route path="/challenge/14" element={<Challenge14 />} />
-          <Route path="/challenge/15" element={<Challenge15 />} />
-          <Route path="/challenge/16" element={<Challenge16 />} />
-          <Route path="/challenge/17" element={<Challenge17 />} />
-          <Route path="/challenge/18" element={<Challenge18 />} />
-          <Route path="/challenge/19" element={<Challenge19 />} />
-          <Route path="/challenge/20" element={<Challenge20 />} />
-          <Route path="/challenge/21" element={<Challenge21 />} />
-          <Route path="/challenge/22" element={<Challenge22 />} />
-          <Route path="/challenge/23" element={<Challenge23 />} />
-          <Route path="/challenge/24" element={<Challenge24 />} />
-          <Route path="/challenge/25" element={<Challenge25 />} />
-          <Route path="/challenge/26" element={<Challenge26 />} />
-          <Route path="/challenge/27" element={<Challenge27 />} />
-          <Route path="/challenge/28" element={<Challenge28 />} />
-          <Route path="/challenge/29" element={<Challenge29 />} />
-          <Route path="/challenge/30" element={<Challenge30 />} />
-          <Route path="/challenge/31" element={<Challenge31 />} />
-          <Route path="/challenge/32" element={<Challenge32 />} />
-          <Route path="/challenge/33" element={<Challenge33 />} />
-          <Route path="/challenge/34" element={<Challenge34 />} />
-          <Route path="/challenge/35" element={<Challenge35 />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <Router>
+        <Switch>
+          <Route path="/" component={Index} />
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/challenge/1" component={Challenge1} />
+          <Route path="/challenge/2" component={Challenge2} />
+          <Route path="/challenge/3" component={Challenge3} />
+          <Route path="/challenge/4" component={Challenge4} />
+          <Route path="/challenge/5" component={Challenge5} />
+          <Route path="/challenge/6" component={Challenge6} />
+          <Route path="/challenge/7" component={Challenge7} />
+          <Route path="/challenge/8" component={Challenge8} />
+          <Route path="/challenge/9" component={Challenge9} />
+          <Route path="/challenge/10" component={Challenge10} />
+          <Route path="/challenge/11" component={Challenge11} />
+          <Route path="/challenge/12" component={Challenge12} />
+          <Route path="/challenge/13" component={Challenge13} />
+          <Route path="/challenge/14" component={Challenge14} />
+          <Route path="/challenge/15" component={Challenge15} />
+          <Route path="/challenge/16" component={Challenge16} />
+          <Route path="/challenge/17" component={Challenge17} />
+          <Route path="/challenge/18" component={Challenge18} />
+          <Route path="/challenge/19" component={Challenge19} />
+          <Route path="/challenge/20" component={Challenge20} />
+          <Route path="/challenge/21" component={Challenge21} />
+          <Route path="/challenge/22" component={Challenge22} />
+          <Route path="/challenge/23" component={Challenge23} />
+          <Route path="/challenge/24" component={Challenge24} />
+          <Route path="/challenge/25" component={Challenge25} />
+          <Route path="/challenge/26" component={Challenge26} />
+          <Route path="/challenge/27" component={Challenge27} />
+          <Route path="/challenge/28" component={Challenge28} />
+          <Route path="/challenge/29" component={Challenge29} />
+          <Route path="/challenge/30" component={Challenge30} />
+          <Route path="/challenge/31" component={Challenge31} />
+          <Route path="/challenge/32" component={Challenge32} />
+          <Route path="/challenge/33" component={Challenge33} />
+          <Route path="/challenge/34" component={Challenge34} />
+          <Route path="/challenge/35" component={Challenge35} />
+          {/* Catch-all route for 404 */}
+          <Route component={NotFound} />
+        </Switch>
+      </Router>
     </TooltipProvider>
   </QueryClientProvider>
 );

@@ -1,11 +1,11 @@
-import { useNavigate } from 'react-router-dom';
+import { useLocation } from 'wouter';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Shield, Target, Zap, Crown, ArrowRight, Code, Lock, BookOpen } from 'lucide-react';
 
 const Index = () => {
-  const navigate = useNavigate();
+  const [location, setLocation] = useLocation();
 
   const features = [
     {
@@ -57,7 +57,7 @@ const Index = () => {
           <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
             <Button 
               size="lg" 
-              onClick={() => navigate('/dashboard')}
+              onClick={() => setLocation('/dashboard')}
               className="flex items-center gap-2 text-lg px-8 py-6"
               variant="terminal"
             >
@@ -69,7 +69,7 @@ const Index = () => {
             <Button 
               size="lg" 
               variant="outline"
-              onClick={() => navigate('/challenge/1')}
+              onClick={() => setLocation('/challenge/1')}
               className="flex items-center gap-2 text-lg px-8 py-6"
             >
               <Target className="h-5 w-5" />
@@ -151,7 +151,7 @@ const Index = () => {
             </p>
             <Button 
               size="lg"
-              onClick={() => navigate('/dashboard')}
+              onClick={() => setLocation('/dashboard')}
               variant="exploit"
               className="flex items-center gap-2 mx-auto"
             >
