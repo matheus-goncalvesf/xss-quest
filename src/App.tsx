@@ -35,6 +35,11 @@ import Challenge27 from "./components/challenges/Challenge27";
 import Challenge28 from "./components/challenges/Challenge28";
 import Challenge29 from "./components/challenges/Challenge29";
 import Challenge30 from "./components/challenges/Challenge30";
+import Challenge31 from "./components/challenges/Challenge31";
+import Challenge32 from "./components/challenges/Challenge32";
+import Challenge33 from "./components/challenges/Challenge33";
+import Challenge34 from "./components/challenges/Challenge34";
+import Challenge35 from "./components/challenges/Challenge35";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -78,6 +83,11 @@ const App = () => (
           <Route path="/challenge/28" element={<Challenge28 />} />
           <Route path="/challenge/29" element={<Challenge29 />} />
           <Route path="/challenge/30" element={<Challenge30 />} />
+          <Route path="/challenge/31" element={<Challenge31 />} />
+          <Route path="/challenge/32" element={<Challenge32 />} />
+          <Route path="/challenge/33" element={<Challenge33 />} />
+          <Route path="/challenge/34" element={<Challenge34 />} />
+          <Route path="/challenge/35" element={<Challenge35 />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

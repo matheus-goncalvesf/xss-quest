@@ -701,6 +701,432 @@ export const challenges: Challenge[] = [
       "Crie exploit funcional"
     ],
     component: "Challenge30"
+  },
+
+  // NOVOS DESAFIOS BÁSICOS (31-35)
+  {
+    id: 31,
+    title: "Calculadora Maliciosa",
+    description: "Uma calculadora que executa mais do que deveria.",
+    category: 'basic',
+    difficulty: 1,
+    completed: false,
+    hints: [
+      "A calculadora usa eval() para processar expressões",
+      "Você pode inserir mais que números",
+      "Tente inserir código JavaScript válido"
+    ],
+    solution: "alert('Calculator XSS')",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Use a calculadora normalmente primeiro",
+      "Insira código JavaScript no lugar de números",
+      "Observe a execução do código"
+    ],
+    component: "Challenge31"
+  },
+  {
+    id: 32,
+    title: "Gerador de QR Code",
+    description: "Sistema que gera QR codes a partir de texto.",
+    category: 'basic',
+    difficulty: 2,
+    completed: false,
+    hints: [
+      "O texto é exibido abaixo do QR code",
+      "Não há sanitização do texto exibido",
+      "HTML é interpretado diretamente"
+    ],
+    solution: "<script>alert('QR XSS')</script>",
+    vulnerabilityType: 'reflected',
+    instructions: [
+      "Digite texto para gerar QR code",
+      "Observe como o texto é exibido",
+      "Injete HTML malicioso no texto"
+    ],
+    component: "Challenge32"
+  },
+  {
+    id: 33,
+    title: "Sistema de Avaliação",
+    description: "Deixe sua avaliação sobre nosso serviço.",
+    category: 'basic',
+    difficulty: 2,
+    completed: false,
+    hints: [
+      "Avaliações são salvas e exibidas publicamente",
+      "O sistema permite formatação rica",
+      "Outros usuários verão sua avaliação"
+    ],
+    solution: "<img src=x onerror=alert('Review XSS')>",
+    vulnerabilityType: 'stored',
+    instructions: [
+      "Escreva uma avaliação",
+      "Use HTML para 'formatar' sua mensagem",
+      "Veja como é exibida para outros usuários"
+    ],
+    component: "Challenge33"
+  },
+  {
+    id: 34,
+    title: "Encurtador de URL",
+    description: "Encurte suas URLs longas facilmente.",
+    category: 'basic',
+    difficulty: 2,
+    completed: false,
+    hints: [
+      "URLs são validadas apenas superficialmente",
+      "O preview mostra a URL original",
+      "JavaScript: URLs são aceitas"
+    ],
+    solution: "javascript:alert('URL Shortener XSS')",
+    vulnerabilityType: 'reflected',
+    instructions: [
+      "Insira uma URL para encurtar",
+      "Tente usar javascript: como protocolo",
+      "Clique no link gerado"
+    ],
+    component: "Challenge34"
+  },
+  {
+    id: 35,
+    title: "Chat de Suporte",
+    description: "Converse com nosso suporte técnico.",
+    category: 'basic',
+    difficulty: 2,
+    completed: false,
+    hints: [
+      "Mensagens são exibidas em tempo real",
+      "O sistema não filtra HTML",
+      "Você pode 'formatar' suas mensagens"
+    ],
+    solution: "<script>alert('Support Chat XSS')</script>",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Inicie uma conversa com o suporte",
+      "Envie uma mensagem com HTML",
+      "Observe como é renderizada"
+    ],
+    component: "Challenge35"
+  },
+
+  // NOVOS DESAFIOS INTERMEDIÁRIOS (36-45)
+  {
+    id: 36,
+    title: "Markdown Editor",
+    description: "Editor que converte Markdown para HTML.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Markdown permite HTML inline",
+      "A conversão não sanitiza HTML",
+      "Use sintaxe Markdown com HTML"
+    ],
+    solution: "[Link](javascript:alert('Markdown XSS'))",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Escreva texto em Markdown",
+      "Misture HTML com Markdown",
+      "Use links com javascript: URLs"
+    ],
+    component: "Challenge36"
+  },
+  {
+    id: 37,
+    title: "Filtro Regex Fraco",
+    description: "Regex mal construída permite bypass.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Regex bloqueia <script> mas não outras tags",
+      "Eventos HTML não são filtrados",
+      "Case sensitivity pode ser explorada"
+    ],
+    solution: "<ScRiPt>alert('Regex Bypass')</ScRiPt>",
+    vulnerabilityType: 'filter-bypass',
+    instructions: [
+      "Teste o filtro com <script>",
+      "Varie a capitalização das letras",
+      "Confirme o bypass"
+    ],
+    component: "Challenge37"
+  },
+  {
+    id: 38,
+    title: "API GraphQL",
+    description: "Endpoint GraphQL com sanitização inadequada.",
+    category: 'intermediate',
+    difficulty: 4,
+    completed: false,
+    hints: [
+      "GraphQL permite queries complexas",
+      "Campos de string não são sanitizados",
+      "Use mutations para injetar dados"
+    ],
+    solution: "mutation { updateProfile(bio: \"<script>alert('GraphQL XSS')</script>\") }",
+    vulnerabilityType: 'stored',
+    instructions: [
+      "Explore a interface GraphQL",
+      "Encontre campos que aceitam HTML",
+      "Use mutations para injetar código"
+    ],
+    component: "Challenge38"
+  },
+  {
+    id: 39,
+    title: "Validação Client-Side",
+    description: "Validação apenas no frontend é insuficiente.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "JavaScript valida dados no cliente",
+      "Validação pode ser bypassada",
+      "Use DevTools para modificar código"
+    ],
+    solution: "Desabilitar validação JS e enviar: <script>alert('Client Bypass')</script>",
+    vulnerabilityType: 'reflected',
+    instructions: [
+      "Observe a validação JavaScript",
+      "Desabilite JavaScript ou modifique o código",
+      "Envie dados não validados"
+    ],
+    component: "Challenge39"
+  },
+  {
+    id: 40,
+    title: "Cookie Reflection",
+    description: "Valores de cookies são refletidos na página.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Página lê e exibe valores de cookies",
+      "Cookies podem ser modificados",
+      "Use DevTools para alterar cookies"
+    ],
+    solution: "document.cookie='username=<script>alert(\"Cookie XSS\")</script>'",
+    vulnerabilityType: 'reflected',
+    instructions: [
+      "Identifique cookies usados pela página",
+      "Modifique valores dos cookies",
+      "Recarregue a página para ver o efeito"
+    ],
+    component: "Challenge40"
+  },
+  {
+    id: 41,
+    title: "Base64 Decoder",
+    description: "Decodificador que executa o resultado.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Sistema decodifica Base64 e exibe resultado",
+      "Resultado é inserido diretamente no DOM",
+      "Encode seu payload em Base64"
+    ],
+    solution: "PHNjcmlwdD5hbGVydCgnQmFzZTY0IFhTUycpPC9zY3JpcHQ+",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Encode JavaScript em Base64",
+      "Cole o resultado no decodificador",
+      "Observe a execução após decodificação"
+    ],
+    component: "Challenge41"
+  },
+  {
+    id: 42,
+    title: "Error Page XSS",
+    description: "Página de erro reflete parâmetros da URL.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Página de erro mostra URL que causou o erro",
+      "Parâmetros são refletidos sem sanitização",
+      "Modifique a URL para injetar código"
+    ],
+    solution: "?error=<script>alert('Error Page XSS')</script>",
+    vulnerabilityType: 'reflected',
+    instructions: [
+      "Force um erro na aplicação",
+      "Observe como a URL é exibida",
+      "Modifique parâmetros para injetar código"
+    ],
+    component: "Challenge42"
+  },
+  {
+    id: 43,
+    title: "XML Parser",
+    description: "Parser XML que processa dados externos.",
+    category: 'intermediate',
+    difficulty: 4,
+    completed: false,
+    hints: [
+      "XML pode conter CDATA com HTML",
+      "Parser não sanitiza conteúdo CDATA",
+      "Use CDATA para bypassar filtros"
+    ],
+    solution: "<![CDATA[<script>alert('XML XSS')</script>]]>",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Envie dados XML para o parser",
+      "Use seções CDATA para HTML",
+      "Observe como é processado"
+    ],
+    component: "Challenge43"
+  },
+  {
+    id: 44,
+    title: "Hash Fragment",
+    description: "JavaScript lê e processa hash da URL.",
+    category: 'intermediate',
+    difficulty: 3,
+    completed: false,
+    hints: [
+      "Página lê location.hash",
+      "Hash é usado para navegação",
+      "Modifique o hash da URL"
+    ],
+    solution: "#<script>alert('Hash XSS')</script>",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Observe como a página usa o hash",
+      "Modifique o hash na URL",
+      "Veja como é processado pelo JavaScript"
+    ],
+    component: "Challenge44"
+  },
+  {
+    id: 45,
+    title: "WebRTC Data Channel",
+    description: "Dados WebRTC são exibidos sem sanitização.",
+    category: 'intermediate',
+    difficulty: 4,
+    completed: false,
+    hints: [
+      "WebRTC permite comunicação P2P",
+      "Dados recebidos são exibidos diretamente",
+      "Simule recebimento de dados maliciosos"
+    ],
+    solution: "Enviar via WebRTC: <script>alert('WebRTC XSS')</script>",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Estabeleça conexão WebRTC",
+      "Envie dados através do canal",
+      "Observe como são exibidos"
+    ],
+    component: "Challenge45"
+  },
+
+  // NOVOS DESAFIOS AVANÇADOS (46-50)
+  {
+    id: 46,
+    title: "Web Worker Message",
+    description: "Web Worker processa dados sem sanitização.",
+    category: 'advanced',
+    difficulty: 4,
+    completed: false,
+    hints: [
+      "Web Worker recebe mensagens do main thread",
+      "Dados são processados e retornados",
+      "Resultado é inserido no DOM"
+    ],
+    solution: "worker.postMessage('<script>alert(\"Worker XSS\")</script>')",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Envie dados para o Web Worker",
+      "Inclua HTML malicioso nos dados",
+      "Observe o resultado processado"
+    ],
+    component: "Challenge46"
+  },
+  {
+    id: 47,
+    title: "Trusted Types Bypass",
+    description: "Bypass de Trusted Types API.",
+    category: 'advanced',
+    difficulty: 5,
+    completed: false,
+    hints: [
+      "Trusted Types previne XSS",
+      "Algumas APIs ainda são vulneráveis",
+      "Use APIs que não verificam Trusted Types"
+    ],
+    solution: "document.write('<script>alert(\"Trusted Types Bypass\")</script>')",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Identifique APIs protegidas por Trusted Types",
+      "Encontre APIs não protegidas",
+      "Use para bypassar a proteção"
+    ],
+    component: "Challenge47"
+  },
+  {
+    id: 48,
+    title: "Import Maps Injection",
+    description: "Import maps podem ser explorados para XSS.",
+    category: 'advanced',
+    difficulty: 5,
+    completed: false,
+    hints: [
+      "Import maps controlam resolução de módulos",
+      "Podem redirecionar imports para URLs maliciosas",
+      "Use data: URLs para injetar código"
+    ],
+    solution: "{\"imports\": {\"./module.js\": \"data:text/javascript,alert('Import Maps XSS')\"}}",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Modifique o import map",
+      "Redirecione imports para data: URLs",
+      "Observe a execução do código injetado"
+    ],
+    component: "Challenge48"
+  },
+  {
+    id: 49,
+    title: "Shared Array Buffer",
+    description: "Dados compartilhados entre workers são vulneráveis.",
+    category: 'advanced',
+    difficulty: 5,
+    completed: false,
+    hints: [
+      "SharedArrayBuffer permite compartilhamento de memória",
+      "Dados podem ser modificados por qualquer worker",
+      "Use para injetar código em contexto principal"
+    ],
+    solution: "// Modificar SharedArrayBuffer com payload XSS",
+    vulnerabilityType: 'dom',
+    instructions: [
+      "Acesse o SharedArrayBuffer",
+      "Modifique dados compartilhados",
+      "Observe impacto no thread principal"
+    ],
+    component: "Challenge49"
+  },
+  {
+    id: 50,
+    title: "Master Challenge",
+    description: "Desafio final que combina todas as técnicas aprendidas.",
+    category: 'expert',
+    difficulty: 5,
+    completed: false,
+    hints: [
+      "Use conhecimento de todos os desafios anteriores",
+      "Múltiplas vulnerabilidades devem ser exploradas",
+      "Pense como um verdadeiro hacker ético"
+    ],
+    solution: "/* Solução complexa combinando múltiplas técnicas */",
+    vulnerabilityType: 'polyglot',
+    instructions: [
+      "Analise toda a aplicação",
+      "Identifique múltiplas vulnerabilidades",
+      "Crie uma cadeia de exploração completa"
+    ],
+    component: "Challenge50"
   }
 ];
 
