@@ -1130,9 +1130,9 @@ const allChallenges: Challenge[] = [
   }
 ];
 
-// Export todos os 50 desafios organizados por dificuldade
-export const challenges: Challenge[] = allChallenges.sort((a, b) => {
-  // Primeiro por dificuldade, depois por categoria, depois por ID
+// Reorganizar desafios por dificuldade e renumerar sequencialmente
+const sortedChallenges = allChallenges.sort((a, b) => {
+  // Primeiro por dificuldade, depois por categoria, depois por ID original
   if (a.difficulty !== b.difficulty) return a.difficulty - b.difficulty;
   
   const categoryOrder = { 'basic': 0, 'intermediate': 1, 'advanced': 2, 'expert': 3 };
@@ -1142,6 +1142,13 @@ export const challenges: Challenge[] = allChallenges.sort((a, b) => {
   
   return a.id - b.id;
 });
+
+// Renumerar sequencialmente de 1 a 50
+export const challenges: Challenge[] = sortedChallenges.map((challenge, index) => ({
+  ...challenge,
+  id: index + 1,
+  component: `Challenge${index + 1}`
+}));
 
 // Função para obter desafios por categoria
 export const getChallengesByCategory = (category: Challenge['category']) => {
