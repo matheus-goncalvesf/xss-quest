@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useProgress } from '@/hooks/useProgress';
+import { ChallengeLayout } from '@/components/ChallengeLayout';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -47,7 +48,7 @@ const Challenge30 = () => {
       newFindings.push('Prototype Pollution');
     }
     
-    setFindings(prev => [...new Set([...prev, ...newFindings])]);
+    setFindings(prev => Array.from(new Set([...prev, ...newFindings])));
   };
 
   const submitExploit = () => {
@@ -95,7 +96,8 @@ function updateSettings(userSettings) {
 }`;
 
   return (
-    <div className="space-y-6">
+    <ChallengeLayout challengeId={30}>
+      <div className="space-y-6">
       <Card className="border-destructive/30 bg-destructive/5">
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
@@ -217,7 +219,8 @@ function updateSettings(userSettings) {
           </div>
         </CardContent>
       </Card>
-    </div>
+      </div>
+    </ChallengeLayout>
   );
 };
 
