@@ -40,6 +40,21 @@ import Challenge32 from "./components/challenges/Challenge32";
 import Challenge33 from "./components/challenges/Challenge33";
 import Challenge34 from "./components/challenges/Challenge34";
 import Challenge35 from "./components/challenges/Challenge35";
+import Challenge36 from "./components/challenges/Challenge36";
+import Challenge37 from "./components/challenges/Challenge37";
+import Challenge38 from "./components/challenges/Challenge38";
+import Challenge39 from "./components/challenges/Challenge39";
+import Challenge40 from "./components/challenges/Challenge40";
+import Challenge41 from "./components/challenges/Challenge41";
+import Challenge42 from "./components/challenges/Challenge42";
+import Challenge43 from "./components/challenges/Challenge43";
+import Challenge44 from "./components/challenges/Challenge44";
+import Challenge45 from "./components/challenges/Challenge45";
+import Challenge46 from "./components/challenges/Challenge46";
+import Challenge47 from "./components/challenges/Challenge47";
+import Challenge48 from "./components/challenges/Challenge48";
+import Challenge49 from "./components/challenges/Challenge49";
+import Challenge50 from "./components/challenges/Challenge50";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -88,6 +103,21 @@ const App = () => (
           <Route path="/challenge/33" component={Challenge33} />
           <Route path="/challenge/34" component={Challenge34} />
           <Route path="/challenge/35" component={Challenge35} />
+          <Route path="/challenge/36" component={Challenge36} />
+          <Route path="/challenge/37" component={Challenge37} />
+          <Route path="/challenge/38" component={Challenge38} />
+          <Route path="/challenge/39" component={Challenge39} />
+          <Route path="/challenge/40" component={Challenge40} />
+          <Route path="/challenge/41" component={Challenge41} />
+          <Route path="/challenge/42" component={Challenge42} />
+          <Route path="/challenge/43" component={Challenge43} />
+          <Route path="/challenge/44" component={Challenge44} />
+          <Route path="/challenge/45" component={Challenge45} />
+          <Route path="/challenge/46" component={Challenge46} />
+          <Route path="/challenge/47" component={Challenge47} />
+          <Route path="/challenge/48" component={Challenge48} />
+          <Route path="/challenge/49" component={Challenge49} />
+          <Route path="/challenge/50" component={Challenge50} />
           {/* Catch-all route for 404 */}
           <Route component={NotFound} />
         </Switch>

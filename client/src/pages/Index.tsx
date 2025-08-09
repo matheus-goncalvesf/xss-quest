@@ -10,7 +10,7 @@ const Index = () => {
   const features = [
     {
       icon: Target,
-      title: "50+ Desafios Únicos",
+      title: "50 Desafios Únicos",
       description: "Cada fase é uma aplicação diferente com vulnerabilidades únicas",
       color: "text-success"
     },

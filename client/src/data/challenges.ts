@@ -708,8 +708,8 @@ const allChallenges: Challenge[] = [
     id: 31,
     title: "Calculadora Maliciosa",
     description: "Uma calculadora que executa mais do que deveria.",
-    category: 'basic',
-    difficulty: 1,
+    category: 'intermediate',
+    difficulty: 3,
     completed: false,
     hints: [
       "A calculadora usa eval() para processar expressões",
@@ -729,8 +729,8 @@ const allChallenges: Challenge[] = [
     id: 32,
     title: "Gerador de QR Code",
     description: "Sistema que gera QR codes a partir de texto.",
-    category: 'basic',
-    difficulty: 2,
+    category: 'intermediate',
+    difficulty: 3,
     completed: false,
     hints: [
       "O texto é exibido abaixo do QR code",
@@ -750,8 +750,8 @@ const allChallenges: Challenge[] = [
     id: 33,
     title: "Sistema de Avaliação",
     description: "Deixe sua avaliação sobre nosso serviço.",
-    category: 'basic',
-    difficulty: 2,
+    category: 'intermediate',
+    difficulty: 3,
     completed: false,
     hints: [
       "Avaliações são salvas e exibidas publicamente",
@@ -771,8 +771,8 @@ const allChallenges: Challenge[] = [
     id: 34,
     title: "Encurtador de URL",
     description: "Encurte suas URLs longas facilmente.",
-    category: 'basic',
-    difficulty: 2,
+    category: 'intermediate',
+    difficulty: 3,
     completed: false,
     hints: [
       "URLs são validadas apenas superficialmente",
@@ -792,8 +792,8 @@ const allChallenges: Challenge[] = [
     id: 35,
     title: "Chat de Suporte",
     description: "Converse com nosso suporte técnico.",
-    category: 'basic',
-    difficulty: 2,
+    category: 'intermediate',
+    difficulty: 3,
     completed: false,
     hints: [
       "Mensagens são exibidas em tempo real",
@@ -1130,8 +1130,18 @@ const allChallenges: Challenge[] = [
   }
 ];
 
-// Export apenas os 35 primeiros desafios que têm componentes implementados
-export const challenges: Challenge[] = allChallenges.filter(challenge => challenge.id <= 35);
+// Export todos os 50 desafios organizados por dificuldade
+export const challenges: Challenge[] = allChallenges.sort((a, b) => {
+  // Primeiro por dificuldade, depois por categoria, depois por ID
+  if (a.difficulty !== b.difficulty) return a.difficulty - b.difficulty;
+  
+  const categoryOrder = { 'basic': 0, 'intermediate': 1, 'advanced': 2, 'expert': 3 };
+  const categoryA = categoryOrder[a.category];
+  const categoryB = categoryOrder[b.category];
+  if (categoryA !== categoryB) return categoryA - categoryB;
+  
+  return a.id - b.id;
+});
 
 // Função para obter desafios por categoria
 export const getChallengesByCategory = (category: Challenge['category']) => {
